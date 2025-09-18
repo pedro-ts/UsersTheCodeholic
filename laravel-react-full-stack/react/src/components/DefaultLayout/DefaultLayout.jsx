@@ -11,6 +11,11 @@ const DefaultLayout = () => {
     return <Navigate to="/login" />;
   }
 
+  const onLogout = (e) => {
+    e.preventDefault();
+
+  }
+
   return (
     <div id="defaultLayout">
       <aside>
@@ -20,14 +25,18 @@ const DefaultLayout = () => {
 
       <div className="content">
         <header>
-          <div>Header</div>
-          <div></div>
+          <div>header</div>
+          <div>
+            {user.name}
+            <a href="#" onClick={onLogout} className="btn-logout">
+              logout
+            </a>
+          </div>
         </header>
 
-      <main>
-      <Outlet />
-      </main>
-
+        <main>
+          <Outlet />
+        </main>
       </div>
     </div>
   );
