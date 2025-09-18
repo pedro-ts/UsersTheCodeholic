@@ -1,4 +1,5 @@
 import React from 'react'
+import "./GuestLayout.css"
 import { Navigate, Outlet } from 'react-router-dom'
 // context
 import { useStateContext } from '../../context/ContextProvider'
