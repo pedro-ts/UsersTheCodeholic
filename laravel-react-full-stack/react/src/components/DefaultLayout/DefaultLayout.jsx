@@ -6,7 +6,7 @@ import { useStateContext } from "../../context/ContextProvider";
 import axiosClient from "../../axios-client";
 
 const DefaultLayout = () => {
-  const { user, token, setUser} = useStateContext();
+  const { user, token, setUser, setToken} = useStateContext();
   if (!token) {
     //se não tiver token(não logado) ir para login (todos com DefaultLayout)
     return <Navigate to="/login" />;
@@ -15,8 +15,13 @@ const DefaultLayout = () => {
   const onLogout = (e) => {
     e.preventDefault();
 
+    axiosClient.post('/logout')
+    .then(()=>{
+      setUser({});
+      setToken(null)
+    })
   }
-
+  // Obtem nome de usuario
   useEffect(() =>{
     axiosClient.get('/user')
     .then(({data}) => {
