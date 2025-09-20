@@ -8,6 +8,7 @@ import NotFound from "./views/NotFound/NotFound";
 // Components
 import GuestLayout from "./components/GuestLayout/GuestLayout";
 import DefaultLayout from "./components/DefaultLayout/DefaultLayout";
+import UserForm from "./views/UserForm/UserForm";
 
 const router = createBrowserRouter([
   // Layout padrão
@@ -26,6 +27,14 @@ const router = createBrowserRouter([
       {
         path: "/users",
         element: <Users/>
+      },
+      {
+        path: "/users/new",
+        element: <UserForm key="userCreate"/>
+      },
+      {
+        path: "/users/:id",
+        element: <UserForm key="userUpdate"/>
       }
     ],
   },
