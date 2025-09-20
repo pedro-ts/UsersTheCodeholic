@@ -6,7 +6,7 @@ import { useStateContext } from "../../context/ContextProvider";
 import axiosClient from "../../axios-client";
 
 const DefaultLayout = () => {
-  const { user, token, setUser, setToken} = useStateContext();
+  const { user, token, notification, setUser, setToken} = useStateContext();
   if (!token) {
     //se não tiver token(não logado) ir para login (todos com DefaultLayout)
     return <Navigate to="/login" />;
@@ -51,6 +51,11 @@ const DefaultLayout = () => {
           <Outlet />
         </main>
       </div>
+      {notification && (
+      <div className="notification">
+        {notification}
+      </div>
+      )}
     </div>
   );
 };
