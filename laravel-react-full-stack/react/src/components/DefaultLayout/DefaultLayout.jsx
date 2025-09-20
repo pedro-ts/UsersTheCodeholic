@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, Navigate, Outlet } from "react-router-dom"; //renderiza o filho
 import "./DefaultLayout.css"
 // context
 import { useStateContext } from "../../context/ContextProvider";
+import axiosClient from "../../axios-client";
 
 const DefaultLayout = () => {
-  const { user, token } = useStateContext();
+  const { user, token, setUser} = useStateContext();
   if (!token) {
     //se não tiver token(não logado) ir para login (todos com DefaultLayout)
     return <Navigate to="/login" />;
@@ -15,6 +16,13 @@ const DefaultLayout = () => {
     e.preventDefault();
 
   }
+
+  useEffect(() =>{
+    axiosClient.get('/user')
+    .then(({data}) => {
+      setUser(data);
+    })
+  }, [])
 
   return (
     <div id="defaultLayout">
